@@ -1,0 +1,42 @@
+<div class="main-content" style="padding-left:20px; padding-top:50px">
+        <div class="main-content-inner">
+<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="ace-icon fa fa-home home-icon"></i>
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="active">Traffic</li>
+                    </ul><!-- /.breadcrumb -->
+                   
+
+                </div>
+
+            <div class="hr hr20 hr-dotted"></div> 
+
+            <div class="col-md-12">
+                <h3 style="font-weight: 600;   text-decoration: underline;">Showing Live Traffic Data</h3>
+            </div>
+            <div class="row" style="padding-top: 40px;">
+                
+                <iframe style="height:550px; width:100%" src="http://ec2-13-228-220-157.ap-southeast-1.compute.amazonaws.com/LiveTrafficInner.html"></iframe>
+
+                <!--<ngui-map center="Penang, Malaysia" style="height:550px"></ngui-map>-->
+
+                <!--<ngui-map zoom="8"
+                          center="37.775, -122.434"
+                          (mapReady$)="onMapReady($event)"
+                          (mapClick)="onMapClick($event)"
+                          (idle)="onIdle($event)"
+                          style="height:550px">
+                    <marker *ngFor="let pos of positions"
+                            [position]="pos"
+                            (initialized$)="onMarkerInit($event)" ></marker>
+                </ngui-map>-->
+            </div>
+
+          
+
+    
+        </div>
+    </div><!-- /.main-content -->

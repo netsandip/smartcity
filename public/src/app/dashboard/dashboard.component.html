@@ -1,0 +1,218 @@
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQSGorMLvpQdsuyJRX7hcscupJgq-_yis"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<div class="main-content" style="Padding-top:50px">
+    <div class="main-content-inner">
+
+        <div class="container-fluid">
+          
+                <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="ace-icon fa fa-home home-icon"></i>
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="active">Environment</li>
+                    </ul><!-- /.breadcrumb -->
+                    <span [hidden]="isshowparkinggraph">
+                        <a class="btn btn-success pull-right parking_detail_btn" (click)="showdetails()">Live</a>
+                    </span>
+
+                </div>
+
+            <div class="hr hr20 hr-dotted"></div>  
+            <div class="container-fluid">
+                <div class="col-md-8">
+                    <div class="col-md-12 main_box">
+
+
+                        <div class="col-md-6">
+                            <div class="col-md-12 box_style">
+                                <div class="col-md-6">
+                                    <ng2-kw-gauge [bgRadius]=progressGraph.bgRadius
+                                                  [bgColor]=progressGraph.bgColor
+                                                  [rounded]=progressGraph.rounded
+                                                  [reverse]=progressGraph.reverse
+                                                  [animationSecs]=progressGraph.animationSecs
+                                                  [labels]=progressGraph.labels
+                                                  [segments]=progressGraph.segments></ng2-kw-gauge>
+
+                                </div>
+                                <div class="col-md-6" style="padding-top: 35px;">
+                                    <span class="info-box-text">Temp</span>
+                                    <span class="info-box-number"><span class="sck_val">{{tempcapacity}} &#8451;</span><i class="sck_arrow"></i></span>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-red" [style.width]="tempcapacity + '%'"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-12 box_style">
+                                <div class="col-md-6">
+                                    <ng2-kw-gauge [bgRadius]=humidityGraph.bgRadius
+                                                  [bgColor]=humidityGraph.bgColor
+                                                  [rounded]=humidityGraph.rounded
+                                                  [reverse]=humidityGraph.reverse
+                                                  [animationSecs]=humidityGraph.animationSecs
+                                                  [labels]=humidityGraph.labels
+                                                  [segments]=humidityGraph.segments></ng2-kw-gauge>
+                                </div>
+                                <div class="col-md-6" style="padding-top: 35px;">
+                                    <span class="info-box-text">Humidity</span>
+                                    <span class="info-box-number"><span class="sck_val">{{humdicapacity}} %</span><i class="sck_arrow"></i></span>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-red" [style.width]="humdicapacity + '%'"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12 main_box">
+
+
+                        <div class="col-md-6">
+                            <div class="col-md-12 box_style">
+                                <div class="col-md-6">
+                                    <ng2-kw-gauge [bgRadius]=WaterLevelGraph.bgRadius
+                                                  [bgColor]=WaterLevelGraph.bgColor
+                                                  [rounded]=WaterLevelGraph.rounded
+                                                  [reverse]=WaterLevelGraph.reverse
+                                                  [animationSecs]=WaterLevelGraph.animationSecs
+                                                  [labels]=WaterLevelGraph.labels
+                                                  [segments]=WaterLevelGraph.segments></ng2-kw-gauge>
+
+                                </div>
+                                <div class="col-md-6" style="padding-top: 35px;">
+                                    <span class="info-box-text">Water Level</span>
+                                    <span class="info-box-number"><span class="sck_val">{{waterlevelcapacity}}</span><i class="sck_arrow"></i></span>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-red" [style.width]="waterlevelcapacity + '%'"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-12 box_style">
+                                <div class="col-md-6">
+                                    <ng2-kw-gauge [bgRadius]=WindGraph.bgRadius
+                                                  [bgColor]=WindGraph.bgColor
+                                                  [rounded]=WindGraph.rounded
+                                                  [reverse]=WindGraph.reverse
+                                                  [animationSecs]=WindGraph.animationSecs
+                                                  [labels]=WindGraph.labels
+                                                  [segments]=WindGraph.segments></ng2-kw-gauge>
+                                </div>
+                                <div class="col-md-6" style="padding-top: 35px;">
+                                    <span class="info-box-text">Wind</span>
+                                    <span class="info-box-number"><span class="sck_val">{{Windcapacitylabel}}</span><i class="sck_arrow"></i></span>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-red" [style.width]="windcapacity + '%'"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12 main_box">
+                        <div class="col-md-6">
+                            <div class="col-md-12 box_style" *ngIf="rainycapacity!=0">
+                                <div class="col-md-6">                                   
+                                    <img  src="../../assets/images/rain.png" />
+                                  </div>
+                                <div class="col-md-6" style="padding-top: 35px;">
+                                    <span class="info-box-text"><span>Rain</span></span>
+                                    <span class="info-box-number"><span class="sck_val">{{rainycapacity}} </span><i class="sck_arrow"></i></span>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-blue" [style.width]="rainycapacityval + '%'"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 box_style" *ngIf="rainycapacity==0">
+                                <div class="col-md-6">
+
+                                  
+                                    <img  src="../../assets/images/cloud.png" />
+
+                                </div>
+                                <div class="col-md-6" style="padding-top: 35px;">
+                                    <span class="info-box-text"><span>Rain</span></span>
+                                    <span class="info-box-number"><span class="sck_val">{{rainycapacityval}} %</span><i class="sck_arrow"></i></span>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-blue" [style.width]="rainycapacityval + '%'"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-12 box_style">
+                                <div class="col-md-6">
+                                    <div style="background-color: rgba(255, 0, 0, 0.26); border-radius: 50%; height: 110px;width: 110px;border: 1px solid;" [ngStyle]="{'background': '-webkit-linear-gradient(left, #FFFFFF '+ lightcapacity +'%,  black 20%)'}">
+                                        <!--<i class="fa fa-moon-o" aria-hidden="true" style="font-size: 198px; color: #2c374e;"></i>-->
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="padding-top: 35px;">
+                                    <span class="info-box-text"><span>Light</span></span>
+                                    <span class="info-box-number"><span class="sck_val">{{lightcapacity}} (lux)</span><i class="sck_arrow"></i></span>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-blue" [style.width]="lightcapacity + '%'"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                   
+                    </div>
+
+                <div class="col-md-4">                 
+
+                    <div class="col-md-12 news_box" >
+                        <h3 class="news_header">Alerts</h3>
+                        <div class="news_section">
+                            <div class="col-md-12" *ngFor="let m of NewsList">
+                                <div class="col-md-6"><a href="{{m.image}}" target="_blank" class="anc_btn">{{m.Description}} :({{m.score}})</a></div>
+                                <div class="col-md-6">{{m.EDate | date:'dd-MM-yy' }} , {{m.Time }}</div>
+                            </div>
+                        </div>
+                            <!--<div class="news_section">
+             <ul class="news_ul">
+                 <li> <span class="date_span"></span></li>
+        </ul>
+
+         </div>-->
+                        </div>
+
+                    <div class="col-md-12 news_alert_box">
+
+                        <iframe style="margin-top: 10px; height:250px"  width="100%" src="https://console.dialogflow.com/api-client/demo/embedded/f150ddff-f940-425a-92b6-87728e90c211"></iframe>
+
+                   
+                    </div>
+                    </div>
+                </div>
+            <div class="container-fluid">
+                
+                    <div class="col-md-12 main_box">                       
+                        <agm-map [latitude]="lat" [longitude]="lng" style="height: 300px; width: 100%;" [zoom]="7">
+
+                            <agm-marker *ngFor="let m of markers;" (markerClick)="hidegraph()" [latitude]="m.lat" [longitude]="m.lng" [iconUrl]="'../../assets/images/avatars/parking.png'" [label]="m.DId"></agm-marker>
+                            <!--<agm-marker  (markerClick)="hidegraph()" [latitude]="lat" [longitude]="lng" [iconUrl]="fa-car"></agm-marker>-->
+
+                        </agm-map>
+                    </div>
+                   
+               
+            </div>
+
+        </div>
+    </div>
+    </div>

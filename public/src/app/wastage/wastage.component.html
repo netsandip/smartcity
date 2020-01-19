@@ -1,0 +1,149 @@
+<div class="main-content" style="Padding-top:50px">
+        <div class="main-content-inner">
+
+    <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="ace-icon fa fa-home home-icon"></i>
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="active">Dustbin</li>
+                    </ul><!-- /.breadcrumb -->
+                   
+
+                </div>
+
+            <div class="hr hr20 hr-dotted"></div> 
+            
+            <div class="row"  [hidden]="hidegooglemap">
+                <div class="col-md-12">
+                    <h3 style="font-weight: 600;   text-decoration: underline;">Dustbin Location</h3>
+                </div>
+                <div class="col-md-12" style="box-shadow: 10px 10px 5px #888888">
+                    <agm-map [latitude]="lat" [longitude]="lng" style="height: 535px; width: 100%;" [zoom]="14">
+
+                        <agm-marker (markerClick)="hidegraph()" [latitude]="lat" [longitude]="lng" [label]="test" [iconUrl]="'../../assets/images/avatars/bus-icon.png'"></agm-marker>
+                       
+                    </agm-map>
+                </div>
+                <!--<a class="btn btn-primary" (click)="hidegraph()">Continue </a>  as Sunshine Square-->
+            </div>
+
+            <div [hidden]="!hidegooglemap">
+
+                <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="ace-icon fa fa-home home-icon"></i>
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="active">Wastage</li>
+                    </ul><!-- /.breadcrumb -->
+                    <span [hidden]="isshowwastageggraph">
+                        <a class="btn btn-primary pull-right dustbin_detail_btn" (click)="showdetails()">Live</a>
+                    </span>
+                    <span [hidden]="!isshowwastageggraph">
+                        <a class="btn btn-primary pull-right dustbin_detail_btn" (click)="showdetails()">Wastage Graph</a>
+                    </span>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="row" style="padding-top: 30px;">
+
+
+                        <div class="col-md-6">
+                            <div class="info-box bg-white" id="sck_temperature">
+                                <span class="info-box-icon bg-red"><i class="menu-icon fa fa-trash"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Full</span>
+
+                                    <span class="info-box-number"><span class="sck_val">{{fulldustbin}}</span><i class="sck_arrow"></i></span>
+                                    <div class="progress">
+
+                                        <div class="progress-bar bg-red" [style.width]="fulldustbin + '%'"> </div>
+                                    </div>
+                                    <!--<span class="progress-description">min {{mintemp}} / max {{maxtemp}}</span>-->
+                                </div><!-- /.info-box-content -->
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="info-box bg-white" id="sck_humid">
+                                <span class="info-box-icon  bg-blue"><i class="menu-icon fa fa-trash"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">In Use</span>
+                                    <span class="info-box-number"><span class="sck_val">{{availableDustbin}} </span><i class="sck_arrow"></i></span>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-blue" [style.width]="availableDustbin + '%'"> </div>
+                                    </div>
+
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div>
+
+
+                    </div>
+                    <div class="hr hr32 hr-dotted">
+
+
+                    </div>
+                    <div class="row" style="padding:20px" [hidden]="isshowwastageggraph">
+
+                        <div class="col-md-8 col-md-offset-2" style="display: block">
+                            <canvas baseChart
+                                    [datasets]="barChartData"
+                                    [labels]="barChartLabels"
+                                    [options]="barChartOptions"
+                                    [legend]="barChartLegend"
+                                    [chartType]="barChartType"
+                                    (chartHover)="chartHovered($event)"
+                                    (chartClick)="chartClicked($event)"></canvas>
+                        </div>
+
+                        <div class="col-md-12 heading_data">
+                            No. of Dustbin Available and Full
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row" [hidden]="!isshowwastageggraph" style="box-shadow: 10px 10px 5px #888888;">
+                        <div class="col-md-12 dustbinlist" *ngFor="let item of dustbinlist">
+                            <div class="col-md-4" *ngFor="let item1 of item.rowlist">
+
+                                <span id="{{ item1.deviceCode }}" *ngIf="item1.deviceCode == 908" class="info-box-icon" style="width: 140px; height: 150px" title="{{fullstatus}}% In Use" [ngStyle]="{'background': '-webkit-linear-gradient(bottom, #C8EC56 '+ fullstatus +'%, #FFFFFF 20%)'}">
+                                    <i class="menu-icon fa fa-trash" style="font-size:150px; color:black"></i>
+                                </span>
+                                <span id="{{ item1.deviceCode }}" *ngIf="item1.deviceCode != 908" class="info-box-icon" style="width: 140px; height: 150px" title="100 % In Use" [ngStyle]="{'background': '-webkit-linear-gradient(bottom, #C8EC56 100%, #FFFFFF 10%)'}">
+                                    <i class="menu-icon fa fa-trash" style="font-size:150px; color:black"></i>
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <!-- <div class="col-md-5"> -->
+                        <!-- <div class="col-md-12" style="padding-top:20px;padding-bottom:10px;" *ngFor="let item of itemsList"> -->
+                        <!-- <div class="col-md-4" *ngFor="let item1 of item.rowlist"> -->
+                        <!-- <!--<span class="info-box-icon" [ngClass]="{ 'bg-green': item1.isBooked == '0','bg-red': item1.isBooked == '1' }"><i class="menu-icon fa fa-car"></i></span>-->
+                        <!-- <span class="info-box-icon" style="width: 140px; height: 150px" [ngStyle]="{'background': '-webkit-linear-gradient(bottom, #C8EC56 '+ item1.full +'%, #FFFFFF 20%)'}"><i class="menu-icon fa fa-trash" style="font-size:150px; color:black"></i></span> -->
+                        <!-- </div> -->
+                        <!-- </div> -->
+                        <!-- </div> -->
+                        <!-- <div class="col-md-5 col-md-offset-1"> -->
+                        <!-- <div class="col-md-12" style="padding-top:20px;padding-bottom:10px;" *ngFor="let item of itemsList1"> -->
+                        <!-- <div class="col-md-4" *ngFor="let item1 of item.rowlist"> -->
+                        <!--<span class="info-box-icon" [ngClass]="{ 'bg-green': item1.isBooked == '0','bg-red': item1.isBooked == '1' }"><i class="menu-icon fa fa-car"></i></span>-->
+                        <!-- <span class="info-box-icon" style="width: 140px; height: 150px" [ngStyle]="{'background': '-webkit-linear-gradient(bottom, #C8EC56 '+ item1.full +'%, #FFFFFF 20%)'}"><i class="menu-icon fa fa-trash" style="font-size:150px; color:black"></i></span> -->
+                        <!-- </div> -->
+                        <!-- </div> -->
+                        <!-- </div> -->
+
+                    </div>
+                </div>
+
+            </div>
+    
+        </div>
+    </div><!-- /.main-content -->

@@ -1,0 +1,36 @@
+[
+{
+"_id":"5917e2e6d911fa66e1a57e06",
+"EventID":1,
+"EventTitle":"My Test Event Title",
+"Description":"My Test Event Descr",
+"CategoriesMstr":"1",
+"StartDt":"2017-05-04 00:00:00.000Z",
+"EndDt":"2017-05-20 00:00:00.000Z",
+"EventRegisterEndDt":"2017-05-02 00:00:00.000Z",
+"EventType":"2",
+"CategoriesSubMstr":"1",
+"POCRequired":"No",
+"Location":"penang",
+"Status":"A",
+"Rules":[
+    {"RuleNo":"1", "RuleDescription":"11 players"}
+],
+"Event_Logo":"/images/aFALA23473.png",
+"Published_Tag":"req.body.Published_Tag",
+"Created_by":"req.body.Created_by",
+"Modified_by":"req.body.Modified_by",
+"RemainDay":"",
+"Prizes":[
+    {"PrizeNo":"1", "PrizeDescription":"1000 $"}
+],
+"Organizers":[
+{"OrganizerName":"amit","OrganizerEmail":"aa@gmail.com"}
+]
+},
+{"_id":"5917e382d911fa66e1a57e19","EventID":2,"EventTitle":"My Test Event Title2","Description":"My Test Event Descr2","CategoriesMstr":"1","StartDt":"2017-05-20T00:00:00.027Z","EndDt":"1970-01-01T00:00:00.122Z","EventRegisterEndDt":"1970-01-01T00:00:00.212Z","EventType":"2","POCRequired":"1","Location":"malaysia","Status":"A","Rules":"Rules","Event_Logo":"Event_Logo","Published_Tag":"Published_Tag","Created_by":"Created_by","Modified_by":"Modified_by","RemainDay":"", "Prizes":"Prizes 2"},
+{"_id":"5917e2e6d911fa66e1a57e06","EventID":3,"EventTitle":"Y4PT Global Transport Hackathon","Description":"this is description of Y4PT Global Transport Hackathon","CategoriesMstr":"1","StartDt":"2017-06-21T18:25:43.511Z","EndDt":null,"EventRegisterEndDt":null,"EventType":"2","POCRequired":"1","Location":"india","Status":"A","Rules":"Rules","Event_Logo":"Event_Logo","Published_Tag":"req.body.Published_Tag","Created_by":"req.body.Created_by","Modified_by":"req.body.Modified_by","RemainDay":"","Prizes":"Prizes 3"},
+{"_id":"5917e2e6d911fa66e1a57e06","EventID":4,"EventTitle":"Indian event","Description":"indian event Test Event Descr","CategoriesMstr":"1","StartDt":"2017-05-11T18:25:43.511Z","EndDt":null,"EventRegisterEndDt":null,"EventType":"2","POCRequired":"1","Location":"china","Status":"A","Rules":"Rules","Event_Logo":"Event_Logo","Published_Tag":"req.body.Published_Tag","Created_by":"req.body.Created_by","Modified_by":"req.body.Modified_by","RemainDay":"","Prizes":"Prizes 4"}
+]
+
+

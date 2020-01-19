@@ -1,0 +1,60 @@
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="#">Home</a>
+                </li>
+                <li class="active">Current</li>
+            </ul>
+           
+            <div class="container-fluid">
+
+                <div class="hr hr10 hr-dotted"></div>
+                <div class="row">
+
+
+                    <div class="col-md-6">
+
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3">
+
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3">
+                        <select class="form-control" style="width: 200px;">
+                            <option *ngFor="let pl of parkingList" value="{{pl.PId}}" class="form-control" (change)="onChange($event.target.value)">{{pl.PName}}</option>
+                        </select>
+                    </div>
+
+
+                </div>
+                <div class="hr hr10 hr-dotted"></div>
+
+
+                <div class="row" style="padding:20px" [hidden]="isshowparkinggraph">
+
+                    <div class="col-md-8 col-md-offset-2" style="display: block">
+                        <canvas baseChart
+                                [datasets]="barChartData"
+                                [labels]="barChartLabels"
+                                [options]="barChartOptions"
+                                [legend]="barChartLegend"
+                                [chartType]="barChartType"
+                                (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+
+                    <div class="col-md-2"></div>
+                    <!--<button (click)="randomize()">Update</button>-->
+                </div>
+
+
+
+
+            </div>
+
+
+
+        </div>
+    </div><!-- /.main-content -->

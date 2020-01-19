@@ -1,0 +1,163 @@
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQSGorMLvpQdsuyJRX7hcscupJgq-_yis"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="#">Home</a>
+                </li>
+                <li class="active">Live Graphs</li>
+            </ul><!-- /.breadcrumb -->
+            <!--<div class="nav-search" id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div>-->
+        </div>
+
+ 
+
+        <div class="row" style="padding-top:30px;">
+      
+            <div style="padding-left:20px" class="col-lg-6 col-md-6 col-xs-12">
+                <div class="box box-solid box-primary">
+                    <div class="box-header with-border">
+                        <i class="ion ion-thermometer"></i>
+                        <h3 class="box-title"> Temperature (&#8451;)</h3>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="display: block;">
+                                <canvas baseChart width="400" height="200"
+                                        [datasets]="lineChartData"
+                                        [labels]="lineChartLabels"
+                                        [options]="lineChartOptions"
+                                        [colors]="lineChartColors"
+                                        [legend]="lineChartLegend"
+                                        [chartType]="lineChartType"
+                                        (chartHover)="chartHovered($event)"
+                                        (chartClick)="chartClicked($event)"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div style="padding-left:20px" class="col-lg-6 col-md-6 col-xs-12">
+                <div class="box box-solid box-primary">
+                    <div class="box-header with-border">
+                        <i class="ion ion-waterdrop"></i>
+                        <h3 class="box-title">  Humidity (%)</h3>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="display: block;">
+                                <canvas baseChart width="400" height="200"
+                                        [datasets]="linehumidityChartData"
+                                        [labels]="linehumidityChartLabels"
+                                        [options]="lineChartOptions"
+                                        [colors]="lineChartColors"
+                                        [legend]="lineChartLegend"
+                                        [chartType]="lineChartType"
+                                        (chartHover)="chartHovered($event)"
+                                        (chartClick)="chartClicked($event)"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row" style="padding-top:30px;">
+
+            <div style="padding-left:20px" class="col-lg-6 col-md-6 col-xs-12">
+                <div class="box box-solid box-primary">
+                    <div class="box-header with-border">
+                        <i class="ion ion-lightbulb"></i>
+                        <h3 class="box-title">  Light (lux)</h3>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="display: block;">
+                                <canvas baseChart width="400" height="200"
+                                        [datasets]="linelightChartData"
+                                        [labels]="linelightChartLabels"
+                                        [options]="lineChartOptions"
+                                        [colors]="lineChartColors"
+                                        [legend]="lineChartLegend"
+                                        [chartType]="lineChartType"
+                                        (chartHover)="chartHovered($event)"
+                                        (chartClick)="chartClicked($event)"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div style="padding-left:20px" class="col-lg-6 col-md-6 col-xs-12">
+                <div class="box box-solid box-primary">
+                    <div class="box-header with-border">
+                        <i class="fa fa-cloud"></i>
+                        <h3 class="box-title">  Rain (mm)</h3>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="display: block;">
+                                <canvas baseChart width="400" height="200"
+                                        [datasets]="linerainChartData"
+                                        [labels]="linerainChartLabels"
+                                        [options]="lineChartOptions"
+                                        [colors]="lineChartColors"
+                                        [legend]="lineChartLegend"
+                                        [chartType]="lineChartType"
+                                        (chartHover)="chartHovered($event)"
+                                        (chartClick)="chartClicked($event)"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+     
+    </div>
+</div>

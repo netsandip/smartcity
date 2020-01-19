@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple Polylines</title>
+    <style>
+      
+        #map {
+            height: 100%;
+        }
+       
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+     
+        function initMap() {
+            var flightPlanCoordinates = [];
+
+            $.ajax({
+                url: "http://ec2-13-228-220-157.ap-southeast-1.compute.amazonaws.com:3000/40945", success: function (result) {
+                    console.log("result", result);
+                    for (var i = 0; i < result.length; i++) {
+
+                        var mark = { "lat": result[i].Lat, "lng": result[i].Long }
+
+                        flightPlanCoordinates.push(mark);
+
+                    }
+                   
+                    if (flightPlanCoordinates.length == 0) {
+                        
+                        flightPlanCoordinates = [
+          { lat: 37.772, lng: -122.214 },
+          { lat: 21.291, lng: -157.821 },
+          { lat: -18.142, lng: 178.431 },
+          { lat: -27.467, lng: 153.027 }
+                        ];
+                    }
+                    var map = new google.maps.Map(document.getElementById('map'), {
+
+                    });
+                    var myLatlng = new google.maps.LatLng(flightPlanCoordinates[0].lat, flightPlanCoordinates[0].lng);
+
+                    var mapOptions = {
+                        zoom: 10,
+                        center: myLatlng
+                    }
+                    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                    for (var i = 0; i < flightPlanCoordinates.length; i++) {
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(flightPlanCoordinates[i].lat, flightPlanCoordinates[i].lng),
+                            title: "Start with 50km/h"
+                        });
+
+                        marker.setMap(map);
+                    }
+
+
+                    var flightPath = new google.maps.Polyline({
+                        path: flightPlanCoordinates,
+                        geodesic: true,
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 1.0,
+                        strokeWeight: 2
+                    });
+                    flightPath.setMap(map);
+
+                },
+                failure: function () {
+                    alert(1);
+                }
+            });
+
+
+            console.log("flightPlanCoordinates", flightPlanCoordinates)
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNeoaNWOhFH0-dWbQDecPNkuTzOzgXb_Q&callback=initMap">
+    </script>
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple Polylines</title>
+    <style>
+        
+         #map {
+             height: 100%;
+         }
+        
+         html, body {
+             height: 100%;
+             margin: 0;
+             padding: 0;
+         }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>     
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 3,
+          center: {lat: 0, lng: -180},
+          mapTypeId: 'terrain'
+        });
+      
+        var flightPlanCoordinates = [
+          {lat: 37.772, lng: -122.214},
+          {lat: 21.291, lng: -157.821},
+          {lat: -18.142, lng: 178.431},
+          {lat: -27.467, lng: 153.027}
+        ];
+
+        var myLatlng = new google.maps.LatLng(flightPlanCoordinates[0].lat, flightPlanCoordinates[0].lng);
+
+        var mapOptions = {
+            zoom: 10,
+            center: myLatlng
+        }
+
+        for (var i = 0; i < flightPlanCoordinates.length; i++) {
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(flightPlanCoordinates[i].lat, flightPlanCoordinates[i].lng),
+                icon: 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png',
+                title: "Start with 50km/h"
+            });
+
+            marker.setMap(map);
+        }
+        var flightPath = new google.maps.Polyline({
+          path: flightPlanCoordinates,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        flightPath.setMap(map);
+      }
+    </script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNeoaNWOhFH0-dWbQDecPNkuTzOzgXb_Q&callback=initMap">
+    </script>
+</body>
+</html>-->

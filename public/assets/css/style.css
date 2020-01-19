@@ -1,0 +1,20 @@
+.div_box{
+    padding: 15px 15px 15px 15px;
+    margin: 40px;
+    width: 150px;
+    height: 100px;
+    border: 1px solid #438EB9;
+    text-align:center;
+    background-color: #438EB9;
+}
+.div_box {
+        font-size: 40px;
+    color: white;
+    margin-top: 15px;
+}
+.env_event{      
+      border-radius: 2px;
+    border: 1px solid #438EB9;
+    box-shadow: 1px 1px 1px 1px;
+    padding: 10px;
+}
